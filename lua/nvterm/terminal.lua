@@ -79,6 +79,13 @@ nvterm.send = function(cmd, type)
   call_and_restore(ensure_and_send, { cmd, type })
 end
 
+nvterm.self_send = function(cmd, type)
+  if not cmd then
+    return
+  end
+  ensure_and_send(cmd, type)
+end
+
 nvterm.hide_term = function(term)
   terminals.list[term.id].open = false
   a.nvim_win_close(term.win, false)
